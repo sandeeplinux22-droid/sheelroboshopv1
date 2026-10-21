@@ -25,15 +25,15 @@ do
     if [ $instance != "frontend" ]; then
     IP=$( aws ec2 describe-instances \
        --instance-ids $instance_id \
-       --query 'Reservations[*].Instances[*].PrivateIpAddress' \
-       --output table
+       --query 'Reservations[].Instances[].PrivateIpAddress' \
+       --output text
     )
     r53_record="${instance}.${domain_name}"
     else
     IP=$( aws ec2 describe-instances \
        --instance-id=$instance_id \
-       --query 'Reservations[*].Instances[*].PublicIpAddress' \
-       --output table
+       --query 'Reservations[].Instances[].PublicIpAddress' \
+       --output text
     
 
     )
@@ -47,7 +47,8 @@ do
 aws route53 change-resource-record-sets \
     --hosted-zone-id $hosted_zone_id \
     --change-batch '{
-        "Changes": [{
+        "Changes": [
+            {
             "Action": "UPSERT",
             "ResourceRecordSet": {
                 "Name": "'$r53_record'",
