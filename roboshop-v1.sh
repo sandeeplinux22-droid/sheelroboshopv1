@@ -27,13 +27,15 @@ do
        --instance_id=$instance_id \
        --query 'Reservations[*].Instances[*].PrivateIpAddress'' \
        --output table
+    )
     r53_record = "$domain_name"
     else
     IP $(aws ec2 describe-instances \
        --instance_id=$instance_id \
        --query 'Reservations[*].Instances[*].PublicIpAddress'' \
        --output table
-    )
+    
+
     )
     r53_record = "$domain_name"
     
