@@ -20,5 +20,5 @@ do
     
    )
 
-    echo "$instance ID = $instance_id"
+    echo "$instance ID: $instance_id"
 done
