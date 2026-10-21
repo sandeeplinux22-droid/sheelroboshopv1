@@ -15,7 +15,7 @@ do
             --instance-type $instance_type \
             --security-groups "roboshop-common" "roboshop-$instance" \
             --tag-specifications "ResourceType=instance,Tags=[{Key=Nme,Value=$instance}]" \
-            --query 'Instances[0].InstanceId' \
+            --query 'instances[0].instanceId' \
             --output text
     
    )
