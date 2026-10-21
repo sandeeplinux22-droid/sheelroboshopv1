@@ -20,4 +20,5 @@ do
     
    )
 
-    done
+    echo "$instance ID: $instance_id"
+done
