@@ -20,7 +20,7 @@ do
     
    )
 
-    echo "$instance ID: $instance_id"
+    echo "$instance instance ID: $instance_id"
 
     if [ $instance != "frontend" ]; then
     IP=$( aws ec2 describe-instances \
