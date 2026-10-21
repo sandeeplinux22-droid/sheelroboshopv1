@@ -9,15 +9,15 @@ for instance in $@
 do
 echo "creating  instance $instance_id"
  instance_id=$(aws ec2 run-instances \
-    --image-id $ami_id
-    --instance-type $instance_type
-    --security-groups "roboshop-common" "roboshop-$instance"
+    --image-id $ami_id \
+    --instance-type $instance_type \
+    --security-groups "roboshop-common" "roboshop-$instance" \
 	--tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=roboshop-$instance}]" \
 	--query 'Instances[0].InstanceId' \
     --output text
  )
 
- echo "$instance instance:$instance_id"
+ echo "$instance instance ID $instance_id"
  if [ $instance != "frontend" ]; then
 
     IP=$( aws ec2 describe-instances \
@@ -46,7 +46,7 @@ aws route53 change-resource-record-sets \
                 "Name": ":$r53_record",
                 "Type": "A",
                 "TTL": 1,
-                "ResourceRecords": [{"Value": "$IP"}]
+                "ResourceRecords": [{"Value": "'$IP'"}]
             }
         }]
     }'
