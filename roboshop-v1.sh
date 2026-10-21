@@ -34,8 +34,9 @@ do
        --query 'Reservations[*].Instances[*].PublicIpAddress'' \
        --output table
     )
-    r53_record = "$domain_name"
     )
+    r53_record = "$domain_name"
+    
     fi
 
     # update r53 records
