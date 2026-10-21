@@ -40,8 +40,9 @@ echo "creating  instance $instance_id"
 aws route53 change-resource-record-sets \
     --hosted-zone-id $hosted_zone_id \
     --change-batch '{
-        "Changes": [{
-            "Action": "CREATE",
+        "Changes": [
+            {
+            "Action": "UPSERT",
             "ResourceRecordSet": {
                 "Name": ":$r53_record",
                 "Type": "A",
