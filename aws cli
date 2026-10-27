@@ -3,3 +3,5 @@ aws ec2 run-instances \
     --instance-type t3.micro \
     --security-group-ids roboshop-common \
         --tag-specifications 'ResourceType=instance,Tags=[{Key=Nme,Value=roboshop-mongodb}]'
+        --query 'Instances[0].InstanceId' \
+    --output text
