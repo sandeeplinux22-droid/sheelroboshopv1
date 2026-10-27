@@ -6,7 +6,7 @@ logs_folder="${logs_folder}/${0}.log"
 mkdir -p $logs_folder
 
 validate (){
-    if [ $user_id -ne 0 ]; then
+    if [ $1 -ne 0 ]; then
     echo "$user_id need to exit if user having sudo access"
     exit 1
     fi
@@ -17,6 +17,9 @@ dnf module enable nodejs:24 -y
 dnf install nodejs -y
 
 validate $? "need to disable nodejs and install nodejs"
+
+npm audit fix
+validate $? "run audit fix"
 
 node -v
 validate $? "validate node"
