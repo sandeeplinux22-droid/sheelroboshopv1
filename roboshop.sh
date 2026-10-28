@@ -5,6 +5,8 @@ instance_type="t3.micro"
 domain_name="sandeeplinux22.store"
 hosted_zone_id="Z09842261W8MW372F9VFX"
 
+source ./shellscript.sh
+
 for instance in $@
 do
     echo "Creating instance: $instance"
