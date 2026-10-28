@@ -63,7 +63,7 @@ do
         
         ]
 
-    }'
+    }"
 
     echo "updated route 53 records $instance"
       
