@@ -4,11 +4,12 @@ image_id="ami-0055977a6e828a4f4"
 instance_type="t3.micro"
 #security_group_ids="sg-02a3f89bd2dcb78b1"
 #instance_name="general"
-hosted_zone_id="Z063293532TA5U290WZK9"
-record_name="godeploy.online"
+#hosted_zone_id="Z063293532TA5U290WZK9"
+#record_name="godeploy.online"
 
 
-source ./Securitygroups_Allservices.sh
+#source ./Securitygroups_Allservices.sh
+source ./shellscript.sh
 
 instanceid_derive(){
     instancename=$1
