@@ -51,9 +51,11 @@ sed -i "s/DOMAIN_NAME/$domain_name/g" "$scripts_dir/user.service"
 cp "$scripts_dir/user.service" /etc/systemd/system/user.service
 
 systemctl daemon-reload
+
+validate $? "reload daemon  user"
 systemctl enable user
 systemctl start user
-validate $? "reload daemon and start user"
+validate $? "ennable  and start user"
 
 systemctl status user
 validate $? "check user status"
