@@ -32,9 +32,6 @@ cd /app
 unzip /tmp/cart.zip
 validate $? "packages download"
 
-npm audit fix
-validate $? "validate NPM"
-
 cd /app
 npm install
 validate $? "install packages"
