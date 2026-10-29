@@ -28,7 +28,7 @@ validate $? "remove old file"
 mkdir -p /app
 validate $? "create app directory "
 curl -L -o /tmp/user.zip https://raw.githubusercontent.com/daws-92s/roboshop-documentation/refs/heads/main/artifacts/user-v4.zip
-valdiate $? "please unzip file"
+validate $? "please unzip file"
 
 cd /app
 validate $? "enter to app directory"
