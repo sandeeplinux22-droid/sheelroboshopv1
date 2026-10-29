@@ -57,6 +57,6 @@ systemctl status user
 validate $? "check user status"
 
 curl http://localhost:8080/health
-valdiate $? "check the local host health"
+validate $? "check the local host health"
 
 
