@@ -6,6 +6,7 @@ logs_folder=/var/log/shellscripting
 logs_file="${logs_folder/${0}.log}"
 
 domain_name="sandeeplinux22.store"
+scripts_dir=$(dirname "$(realpath "$0")")
 
 mkdir -p "$logs_folder"
 
