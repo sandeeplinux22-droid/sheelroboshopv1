@@ -31,9 +31,6 @@ curl -L -o /tmp/user.zip https://raw.githubusercontent.com/daws-92s/roboshop-doc
 validate $? "please unzip file"
 
 cd /app
-validate $? "enter to app directory"
-
-
 unzip /tmp/user.zip
 validate $? "unzip the file"
 
@@ -50,8 +47,6 @@ validate $? "install npmpackages"
 
 sed -i "s/DOMAIN_NAME/$domain_name/g" "$scripts_dir/user.service"
 cp "$scripts_dir/user.service" /etc/systemd/system/user.service
-validate $? "cp above file"
-
 
 systemctl daemon-reload
 systemctl enable user
