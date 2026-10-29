@@ -21,13 +21,7 @@ dnf install nodejs -y
 validate $? "disable and install nodejs"
 
 useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop
- validate (){
-    if [ $1 -ne 0 ]; then
-    echo "check user is available if yes print"
-    else
-    echo "check user is available if no print"
-    fi
- }
+validate $? "create user"
 
 rm -rf /app
 validate $? "remove app directory"
@@ -44,6 +38,7 @@ npm audit fix
 validate $? "validate NPM"
 
 cd /app
+validate $? "enter app directory"
 npm install
 validate $? "install packages"
 
