@@ -10,7 +10,7 @@ mkdir -p "$logs_folder"
 validate () {
 
      if [ $user_id -ne 0 ]; then
-     echo="$user _id need to be success if id having access"
+     echo="user_id need to be success if id having access"
      fi
 }
 
@@ -24,6 +24,19 @@ validate $? "create user"
 
 rm -rf /app
 validate $? "remove old file"
+
+mkdir -p /app
+validate $? "create app directory "
+curl -L -o /tmp/user.zip https://raw.githubusercontent.com/daws-92s/roboshop-documentation/refs/heads/main/artifacts/user-v4.zip
+valdiate $? "please unzip file"
+
+cd /app
+validate $? "enter to app directory"
+
+
+unzip /tmp/user.zip
+validate $? "unzip the file"
+
 
 
 cd /app
@@ -41,5 +54,6 @@ validate $? "relaod daemon and start user"
 systemctl status user
 validate $? "check user status"
 
-
+curl http://localhost:8080/health
+valdiate $? "check the local host health"
 
