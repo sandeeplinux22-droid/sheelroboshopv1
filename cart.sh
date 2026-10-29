@@ -26,6 +26,7 @@ useradd --system --home /app --shell /sbin/nologin --comment "roboshop system us
     echo "check user is available if yes print"
     else
     echo "check user is available if no print"
+    fi
  }
 
 rm -rf /app
