@@ -36,6 +36,9 @@ cd /app
 npm install
 validate $? "install packages"
 
+sed -i "s/DOMAIN_NAME/$domain_name/g" "$scripts_dir/cart.service"
+cp "$scripts_dir/cart.service" /etc/systemd/system/cart.service
+
 systemctl daemon-reload
 systemctl enable cart
 systemctl start cart
