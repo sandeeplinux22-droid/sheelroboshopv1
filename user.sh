@@ -42,6 +42,9 @@ validate $? "unzip the file"
 cd /app
 validate $? "enter to app directory"
 
+npm audit fix
+validate $? "validate NPM"
+
 npm install
 validate $? "install npmpackages"
 
