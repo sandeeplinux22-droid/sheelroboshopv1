@@ -3,7 +3,7 @@
 user_id=$(id -u)
 
 logs_folder=/var/log/shellscripting
-logs_file=${logs_folder/${0}.log}"
+logs_file="${logs_folder/${0}.log}"
 
 mkdir -p "$logs_folder"
 
@@ -49,7 +49,12 @@ validate $? "install npmpackages"
 systemctl daemon-reload
 systemctl enable user
 systemctl start user
-validate $? "relaod daemon and start user"
+validate $? "reload daemon and start user"
 
+#systemctl status user
+#validate $? "check user status"
+
+#curl http://localhost:8080/health
+#valdiate $? "check the local host health"
 
 
