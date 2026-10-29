@@ -36,11 +36,6 @@ cd /app
 unzip /tmp/user.zip
 validate $? "unzip the file"
 
-
-
-cd /app
-validate $? "enter to app directory"
-
 npm audit fix
 validate $? "validate NPM"
 
@@ -51,14 +46,14 @@ sed -i "s/DOMAIN_NAME/$domain_name/g" "$scripts_dir/user.service"
 cp "$scripts_dir/user.service" /etc/systemd/system/user.service
 
 systemctl daemon-reload
-
-validate $? "reload daemon  user"
 systemctl enable user
 systemctl start user
-validate $? "ennable  and start user"
+validate $? "Starting and enabling user"
 
-systemctl status user
-validate $? "check user status"
+
+systemctl restart user
+validate $? "Restarting user"
+
 
 curl http://localhost:8080/health
 validate $? "check the local host health"
