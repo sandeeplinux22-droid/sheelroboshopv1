@@ -12,7 +12,7 @@ validate (){
    if [ $1 -ne 0 ]; then
    echo "$user_id is having root access"
    exit 1 
-
+fi 
 }
 
 dnf module disable nodejs -y
