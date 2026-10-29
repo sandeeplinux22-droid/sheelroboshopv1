@@ -27,16 +27,16 @@ rm -rf /app
 validate $? "remove app directory"
 
 mkdir /app
-validate $? "packages download"
+validate $? "enter app"
 curl -L -o /tmp/cart.zip https://raw.githubusercontent.com/daws-92s/roboshop-documentation/refs/heads/main/artifacts/cart-v4.zip
 validate $? "packages download"
 cd /app
 unzip /tmp/cart.zip
-validate $? "packages download"
+validate $? "packages unzip"
 
-cd /app
+
 npm install
-validate $? "install packages"
+validate $? "install depend"
 
 sed -i "s/DOMAIN_NAME/$domain_name/g" "$scripts_dir/cart.service"
 cp "$scripts_dir/cart.service" /etc/systemd/system/cart.service
