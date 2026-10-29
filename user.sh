@@ -48,16 +48,19 @@ validate $? "validate NPM"
 npm install
 validate $? "install npmpackages"
 
+sed -i "s/DOMAIN_NAME/$domain_name/g" "$scripts_dir/user.service"
+cp "$scripts_dir/user.service" /etc/systemd/system/user.service
+
 
 systemctl daemon-reload
 systemctl enable user
 systemctl start user
 validate $? "reload daemon and start user"
 
-#systemctl status user
-#validate $? "check user status"
+systemctl status user
+validate $? "check user status"
 
-#curl http://localhost:8080/health
-#valdiate $? "check the local host health"
+curl http://localhost:8080/health
+valdiate $? "check the local host health"
 
 
