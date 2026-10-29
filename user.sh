@@ -51,9 +51,5 @@ systemctl enable user
 systemctl start user
 validate $? "relaod daemon and start user"
 
-#systemctl status user
-#validate $? "check user status"
 
-#curl http://localhost:8080/health
-#valdiate $? "check the local host health"
 
