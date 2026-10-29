@@ -26,13 +26,11 @@ validate $? "create user"
 rm -rf /app
 validate $? "remove app directory"
 
-mkdir -p /app
+mkdir /app
 curl -L -o /tmp/cart.zip https://raw.githubusercontent.com/daws-92s/roboshop-documentation/refs/heads/main/artifacts/cart-v4.zip
-validate $? "downlaod packages"
-
-
+cd /app
 unzip /tmp/cart.zip
-validate $? "unzip packages"
+validate $? "packages download"
 
 npm audit fix
 validate $? "validate NPM"
