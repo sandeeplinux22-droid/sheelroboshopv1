@@ -27,7 +27,9 @@ rm -rf /app
 validate $? "remove app directory"
 
 mkdir /app
+validate $? "packages download"
 curl -L -o /tmp/cart.zip https://raw.githubusercontent.com/daws-92s/roboshop-documentation/refs/heads/main/artifacts/cart-v4.zip
+validate $? "packages download"
 cd /app
 unzip /tmp/cart.zip
 validate $? "packages download"
