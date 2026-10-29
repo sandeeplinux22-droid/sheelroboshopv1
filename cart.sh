@@ -38,7 +38,6 @@ npm audit fix
 validate $? "validate NPM"
 
 cd /app
-validate $? "enter app directory"
 npm install
 validate $? "install packages"
 
