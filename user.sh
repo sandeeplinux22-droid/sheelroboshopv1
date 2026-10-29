@@ -12,7 +12,7 @@ validate () {
      if [ $user_id -ne 0 ]; then
      echo="$user _id need to be success if id having access"
      fi
-}
+
 
 dnf module disable nodejs -y
 dnf module enable nodejs:24 -y
@@ -43,3 +43,5 @@ validate $? "check user status"
 
 curl http://localhost:8080/health
 valdiate $? "check the local host health"
+
+}
