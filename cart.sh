@@ -31,6 +31,9 @@ curl -L -o /tmp/cart.zip https://raw.githubusercontent.com/daws-92s/roboshop-doc
 validate $? "downlaod packages"
 
 cd /app
+validate $? "enter to app directory"
+
+
 unzip /tmp/cart.zip
 validate $? "unzip packages"
 
