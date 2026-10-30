@@ -33,4 +33,9 @@ mvn -v
 validate $? "check java version"
 
 
+useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop
+validate $? "create roboshop user"
+
+
+
 
