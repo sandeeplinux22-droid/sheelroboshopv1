@@ -67,13 +67,12 @@ if [ -z "$count" ] || [ "$count" -eq 0 ]; then
     validate $? "Loading shipping data"
 fi
 
-mysql -h "mysql.$domain_name" -uroot -pRoboShop@1 < /app/db/app-user.sql
-validate $? "Creating APP user"
+
 
 systemctl daemon-reload &>> $logs_file
 systemctl enable shipping &>> $logs_file
 systemctl restart shipping
-validate $? "Restarting/Starting shipping"
+validate $? "Restarting and Starting shipping"
 
 
 
