@@ -1,8 +1,12 @@
 #!/bin/bash
 
 user_id=$(id -u)
-logs_folder="/var/log/shellscripting"
+logs_folder="/var/log/roboshop"
 logs_file="${logs_folder}/${0}.log"
+R="\e[31m"
+G="\e[32m"
+Y="\e[33m"
+N="\e[0m"
 
 if [ $user_id -ne 0 ]; then
     echo "Please run this script with sudo access.."
@@ -20,8 +24,8 @@ validate(){
     else
         echo -e "${2}..${G}SUCCESS${N}" | tee -a $logs_file
     fi
-
 }
+
 
 cp mongo.repo /etc/yum.repos.d/mongo.repo
 validate $? "Adding mongo repo"
@@ -38,6 +42,3 @@ validate $? "Updating remote connections to MongoDB"
 
 systemctl restart mongod
 validate $? "Restarting MongoDB"
-
-setsebool -P httpd_can_network_connect 1
-validate $? "connect httpd"

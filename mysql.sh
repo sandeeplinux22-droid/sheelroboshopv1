@@ -1,28 +1,45 @@
 #!/bin/bash
 
 user_id=$(id -u)
-logs_file=/var/log/shellscripting
-logs_folder=${logs_file/${0}.log}
+logs_folder="/var/log/roboshop"
+logs_file="${logs_folder}/${0}.log"
+R="\e[31m"
+G="\e[32m"
+Y="\e[33m"
+N="\e[0m"
 
-validate (){
-    if [ $user_id -ne 0 ]; then
-    echo "$user_id need to sucess if user having root access"
+if [ $user_id -ne 0 ]; then
+    echo "Please run this script with sudo access.."
     exit 1
-    fi
-}
+fi
 
 mkdir -p $logs_folder
 
-dnf module enable mysql:8.4 -y
-dnf install mysql-server -y
+timestamp(){
+    date "+%F %T" 
+}
 
-validate $? "enable and install the mysql server"
+validate(){
+    if [ $1 -ne 0 ]; then
+        echo -e "$(timestamp) [ERROR] ${2}..${R}FAILED${N}" | tee -a $logs_file
+        exit 1
+    else
+        echo -e "$(timestamp) [INFO] ${2}..${G}SUCCESS${N}" | tee -a $logs_file
+    fi
+}
 
-systemctl enable mysqld
+echo "$(timestamp) [INFO] ==== Script started Execution =====" | tee -a $logs_file
+
+dnf module enable mysql:8.4 -y &>> $logs_file
+dnf install mysql-server -y  &>> $logs_file
+validate $? "Installing MySQL server"
+
+systemctl enable mysqld  &>> $logs_file
 systemctl start mysqld
+validate $? "Start and Enable MySQL"
 
-validate $? "enable and start mysqld"
+mysql_secure_installation --set-root-pass RoboShop@1  &>> $logs_file
+validate $? "Setup MySQL root password"
 
-mysql_secure_installation --set-root-pass RoboShop@1
-validate $? "keep user name"
-
+echo "$(timestamp) [INFO] Script completed in $SECONDS seconds"
+echo "$(timestamp) [INFO] ==== Script completed Execution =====" | tee -a $logs_file
