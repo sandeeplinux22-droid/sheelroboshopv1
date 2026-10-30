@@ -53,6 +53,19 @@ mvn clean package
 mv target/shipping.jar shipping.jar
 validate $? "clean the packages and move the file"
 
+sed -i "s/DOMAIN_NAME/$domain_name/g" "$scripts_dir/shipping.service"
+cp "$scripts_dir/shipping.service" /etc/systemd/system/shipping.service
+
+dnf install mysql -y
+validate $? "install the packages"
+
+mysql -h "mysql.$domain_name" -uroot -pRoboShop@1 < /app/db/app-user.sql
+validate $? "Creating APP user"
+
+systemctl daemon-reload &>> $logs_file
+systemctl enable shipping &>> $logs_file
+systemctl restart shipping
+validate $? "Restarting/Starting shipping"
 
 
 
