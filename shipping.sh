@@ -19,5 +19,5 @@ dnf install maven java-25-openjdk-devel -y
 valdiate $? "enable and install maven"
 
 alternatives --config java
-validate $? "once install keep alternative config"
+#validate $? "once install keep alternative config"
 
