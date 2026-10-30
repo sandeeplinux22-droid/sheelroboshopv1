@@ -50,6 +50,8 @@ validate $? "unzip the file"
 
 cd /app
 mvn clean package
+validate $? "clean the packages and move the file"
+
 mv target/shipping.jar shipping.jar
 validate $? "clean the packages and move the file"
 
