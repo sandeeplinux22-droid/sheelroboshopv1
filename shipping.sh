@@ -50,16 +50,16 @@ validate $? "unzip the file"
 
 cd /app
 mvn clean package
-validate $? "clean the packages and move the file"
+validate $? "clean the packages"
 
 mv target/shipping.jar shipping.jar
-validate $? "clean the packages and move the file"
+validate $? "shipping jar"
 
 sed -i "s/DOMAIN_NAME/$domain_name/g" "$scripts_dir/shipping.service"
 cp "$scripts_dir/shipping.service" /etc/systemd/system/shipping.service
 
 dnf install mysql -y
-validate $? "install the packages"
+validate $? "install mysql"
 
 count=$(mysql -h "mysql.$domain_name" -u root -pRoboShop@1 -N -B -e "SELECT COUNT(*) FROM cities.cities;" 2>> $logs_file )
 if [ -z "$count" ] || [ "$count" -eq 0 ]; then
