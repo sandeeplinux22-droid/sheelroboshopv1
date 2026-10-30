@@ -27,5 +27,10 @@ echo $JAVA_HOME
 
 validate $? "java profile create"
 
+java -version
+mvn -v
+
+validate $? "check java version"
+
 
 
