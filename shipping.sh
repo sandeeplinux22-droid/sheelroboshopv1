@@ -21,3 +21,11 @@ valdiate $? "enable and install maven"
 alternatives --config java
 #validate $? "once install keep alternative config"
 
+echo "export JAVA_HOME=$(dirname $(dirname $(readlink -f /usr/bin/java)))" > /etc/profile.d/java.sh
+source /etc/profile.d/java.sh
+echo $JAVA_HOME
+
+validate $? "java profile create"
+
+
+
