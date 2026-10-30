@@ -19,7 +19,7 @@ dnf install maven java-25-openjdk-devel -y
 valdiate $? "enable and install maven"
 
 alternatives --config java
-#validate $? "once install keep alternative config"
+validate $? "once install keep alternative config"
 
 echo "export JAVA_HOME=$(dirname $(dirname $(readlink -f /usr/bin/java)))" > /etc/profile.d/java.sh
 source /etc/profile.d/java.sh
@@ -41,7 +41,7 @@ validate $? "remove app directory"
 
 mkdir /app
 curl -L -o /tmp/shipping.zip https://raw.githubusercontent.com/daws-92s/roboshop-documentation/refs/heads/main/artifacts/shipping-v4.zip
-valdidate $? "download the packages"
+validate $? "download the packages"
 
 
 cd /app
