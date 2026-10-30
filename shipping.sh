@@ -52,7 +52,7 @@ cd /app
 mvn clean package
 validate $? "clean the packages"
 
-mv target/shipping.jar shipping.jar
+mv /app/target/shipping.jar shipping.jar
 validate $? "shipping jar"
 
 sed -i "s/DOMAIN_NAME/$domain_name/g" "$scripts_dir/shipping.service"
