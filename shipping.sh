@@ -29,12 +29,33 @@ validate $? "java profile create"
 
 java -version
 mvn -v
-
 validate $? "check java version"
 
 
 useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop
 validate $? "create roboshop user"
+
+rm -rf /app
+validate $? "remove app directory"
+
+
+mkdir /app
+curl -L -o /tmp/shipping.zip https://raw.githubusercontent.com/daws-92s/roboshop-documentation/refs/heads/main/artifacts/shipping-v4.zip
+valdidate $? "download the packages"
+
+
+cd /app
+unzip /tmp/shipping.zip
+validate $? "unzip the file"
+
+cd /app
+mvn clean package
+mv target/shipping.jar shipping.jar
+validate $? "clean the packages and move the file"
+
+
+
+
 
 
 
